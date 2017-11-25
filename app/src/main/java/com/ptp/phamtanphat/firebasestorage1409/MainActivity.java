@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -68,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 int currentTime = (int) System.currentTimeMillis();
                 StorageReference mountainsRef = storageRef.child("Hinhanh/hinh" +currentTime +".png");
 
-                imgupload.setDrawingCacheEnabled(true);
-                imgupload.buildDrawingCache();
-                Bitmap bitmap = imgupload.getDrawingCache();
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) imgupload.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                 byte[] data = baos.toByteArray();
